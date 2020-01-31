@@ -59,5 +59,6 @@ Após baixar o projeto pelo git clone, realize os seguintes passos:
 ```console
 cd FastFeet
 yarn install
+yarn sequelize db:migrate
 yarn dev
 ```
