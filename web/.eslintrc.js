@@ -5,7 +5,7 @@ module.exports = {
     jest: true,
   },
   extends: [
-    'plugin:react/recommended',
+    'react',
     'airbnb',
     'prettier',
     'prettier/react',
