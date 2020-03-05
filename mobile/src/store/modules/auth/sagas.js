@@ -1,20 +1,20 @@
-import {Alert} from 'react-native';
-import {takeLatest, call, put, all} from 'redux-saga/effects';
+import { Alert } from 'react-native';
+import { takeLatest, call, put, all } from 'redux-saga/effects';
 
-import {signInSuccess, signFailure} from './actions';
+import { signInSuccess, signFailure } from './actions';
 
 import api from '~/services/api';
 
-export function* signIn({payload}) {
+export function* signIn({ payload }) {
   try {
-    const {email, password} = payload;
+    const { email, password } = payload;
 
     const response = yield call(api.post, 'sessions', {
       email,
       password,
     });
 
-    const {token, user} = response.data;
+    const { token, user } = response.data;
 
     if (user.provider) {
       Alert.alert(
@@ -38,9 +38,9 @@ export function* signIn({payload}) {
   }
 }
 
-export function* signUp({payload}) {
+export function* signUp({ payload }) {
   try {
-    const {name, email, password} = payload;
+    const { name, email, password } = payload;
 
     yield call(api.post, 'users', {
       name,
@@ -59,10 +59,10 @@ export function* signUp({payload}) {
   }
 }
 
-export function setToken({payload}) {
+export function setToken({ payload }) {
   if (!payload) return;
 
-  const {token} = payload.auth;
+  const { token } = payload.auth;
 
   if (token) {
     api.defaults.headers.Authorization = `Bearer ${token}`;
